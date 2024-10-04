@@ -113,7 +113,7 @@ export default defineConfig({
 ## Tạo file entity
 ## có được file entity tạo file migration
 
-- cài thêm package: npm add @mikro-orm/cli
+- cài thêm package: npm add @mikro-orm/cli   
 
 run: npx mikro-orm migration:create
 
