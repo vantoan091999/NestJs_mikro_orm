@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  nestjs-app:
+    image: node:22.8.0
+    container_name: nestjs-app
+    working_dir: /usr/src/app
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "3000:3000"
+    command: npm run start:dev
+    depends_on:
+      - dev-database
+    networks:
+      - nestjs-network
+
+  dev-database:
+    image: mysql:8.0
+    container_name: dev-database
+    ports:
+      - ${DB_PORT}:3306 # {port in host(myPC)} : {port in Container}
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456789
+      MYSQL_DATABASE: testdb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 123456789
+    networks:
+      - nestjs-network
+
+networks:
+  nestjs-network:
